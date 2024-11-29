@@ -1,12 +1,7 @@
-# Reff Fishing Frenzy - Automation User
+# Auto Reff Fishing Frenzy
+![29 11 2024_20 46 05_REC](https://github.com/user-attachments/assets/b203854a-e1fc-4bc7-80fd-5cb515218719)
 
-Proyek ini adalah skrip otomatisasi yang digunakan untuk membuat pengguna secara otomatis, login sebagai tamu, dan memverifikasi kode referensi untuk sebuah sistem berbasis API.
-
-## Deskripsi
-
-Skrip ini secara otomatis membuat pengguna baru, melakukan login sebagai tamu menggunakan ID perangkat unik, dan kemudian memverifikasi kode referensi untuk setiap pengguna. Token akses yang diterima selama proses login disimpan ke dalam file untuk digunakan lebih lanjut.
-
-Fitur utama:
+Fitur :
 - Login sebagai tamu dengan ID perangkat unik.
 - Memverifikasi kode referensi untuk setiap pengguna.
 - Menyimpan token akses yang diterima ke dalam file untuk referensi selanjutnya.
@@ -20,10 +15,10 @@ Fitur utama:
 - **Penyimpanan token**: Token akses yang diperoleh disimpan dalam file `tokens.txt`.
 
 ## Persyaratan
+- Node.js versi 18 atau lebih tinggi
 
-- Node.js versi 14 atau lebih tinggi
-- npm (Node Package Manager)
-- Akses ke API untuk melakukan login dan verifikasi kode referensi
+## Jika tanpa Proxy tinggal run saja
+## Jika ada proxy edit file ```config.txt```
 
 ## Konfigurasi config.txt
 
@@ -37,21 +32,22 @@ Fitur utama:
 
 Clone repositori ini ke komputer lokal Anda:
 
-```bash
-git clone https://github.com/HarunTampan/Auto-Reff-FishingFrenzy.git
+```
+git clone https://github.com/AirdropFamilyIDN-V2-0/Auto-Reff-FishingFrenzy.git
+```
+```
 cd Auto-Reff-FishingFrenzy
 ```
-
-### 2. install modul
-
-Install modul ini di PC/LAPTOP
-
-```bash
+```
 npm install
 ```
 
 ## Cara Running
 
-```bash
-node index <numUsers> <koderef>
+```
+node index.js 100 kodereffmu
+```
+## Contoh penggunaan running
+```
+node index.js 100 JX0QL8
 ```
