@@ -21,6 +21,9 @@ Fitur :
 ## Jika tanpa Proxy pilih no
 ## Jika Menggunakan proxy pilih yes, edit file proxy di ```proxy.txt```
 
+## Beli proxy disini
+- https://t.me/AirdropFamilyIDN/6492
+
 ## Konfigurasi config.txt
 - klik F12 atau CTRL + SHIFT + I 
 - klik Network Lalu scroll kebawah cari Sessions
