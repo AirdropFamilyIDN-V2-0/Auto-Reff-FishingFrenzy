@@ -1,5 +1,6 @@
 # Auto Reff Fishing Frenzy
-![29 11 2024_20 46 05_REC](https://github.com/user-attachments/assets/b203854a-e1fc-4bc7-80fd-5cb515218719)
+![29 11 2024_21 01 21_REC](https://github.com/user-attachments/assets/d4ad235b-b6c7-4fd8-bd02-2745f6af7bd3)
+
 
 Fitur :
 - Login sebagai tamu dengan ID perangkat unik.
@@ -15,23 +16,17 @@ Fitur :
 - **Penyimpanan token**: Token akses yang diperoleh disimpan dalam file `tokens.txt`.
 
 ## Persyaratan
-- Node.js versi 18 atau lebih tinggi
+## Node.js versi 18 atau lebih tinggi
 
 ## Jika tanpa Proxy tinggal run saja
 ## Jika ada proxy edit file ```config.txt```
 
 ## Konfigurasi config.txt
-
 - klik F12 atau CTRL + SHIFT + I 
 - klik Network Lalu scroll kebawah cari Sessions
 - Ambil PRIVY_APP_ID dan PRIVY_CA_ID masukkan di config.txt
 
-## Instalasi
-
-### 1. Clone Repositori
-
-Clone repositori ini ke komputer lokal Anda:
-
+## How to run
 ```
 git clone https://github.com/AirdropFamilyIDN-V2-0/Auto-Reff-FishingFrenzy.git
 ```
@@ -41,13 +36,6 @@ cd Auto-Reff-FishingFrenzy
 ```
 npm install
 ```
-
-## Cara Running
-
 ```
-node index.js 100 kodereffmu
-```
-## Contoh penggunaan running
-```
-node index.js 100 JX0QL8
+node index.js
 ```
