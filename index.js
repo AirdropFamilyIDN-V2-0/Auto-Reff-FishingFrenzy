@@ -36,6 +36,33 @@ if (!API_URL || (!API_URL.startsWith('http://') && !API_URL.startsWith('https://
     process.exit(1);
 }
 
+// Fungsi untuk mendapatkan IP tanpa menggunakan proxy
+const getIPWithoutProxy = async () => {
+    try {
+        const response = await axios.get('https://httpbin.org/ip');
+        return response.data.origin;
+    } catch (error) {
+        console.error('Error fetching IP:', error.message);
+        return null;
+    }
+};
+
+// Fungsi untuk mendapatkan IP menggunakan proxy
+const getIPWithProxy = async (proxy) => {
+    try {
+        const response = await axios.get('http://httpbin.org/ip', {
+            proxy: {
+                host: new URL(proxy).hostname,
+                port: new URL(proxy).port || 80,
+            }
+        });
+        return response.data.origin;
+    } catch (error) {
+        console.error('Error fetching IP with proxy:', error.message);
+        return null;
+    }
+};
+
 // Output file untuk menyimpan data token
 const TOKEN_FILE = 'tokens.txt';
 
@@ -131,11 +158,55 @@ const getUserInput = (query) => {
     }));
 };
 
+// Fungsi untuk membaca proxy dari file
+const readProxyFromFile = () => {
+    const PROXY_FILE = path.join(__dirname, 'proxy.txt');
+    try {
+        const proxyData = fs.readFileSync(PROXY_FILE, 'utf-8').trim().split('\n');
+        //console.log('Proxy data:', proxyData);
+        const proxyPatternWithAuth = /^http:\/\/[^\s:@]+:[^\s:@]+@[^\s:@]+\.[^\s:@]+:\d+$/;
+        const proxyPatternWithoutAuth = /^http:\/\/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+$/;
+
+        for (const proxy of proxyData) {
+            if (proxyPatternWithAuth.test(proxy) || proxyPatternWithoutAuth.test(proxy)) {
+                return proxy; // Return the first valid proxy
+            }
+        }
+        throw new Error('No valid proxy format found in proxy.txt. Expected formats: http://username:pass@ip:port or http://ip:port');
+    } catch (err) {
+        console.error(chalk.red(`Error reading proxy file: ${err.message}`));
+        return null;
+    }
+};
+
 // Jalankan skrip
 (async () => {
     try {
+        // Tanya pengguna apakah ingin menggunakan proxy
+        const useProxy = await getUserInput('Ingin menggunakan proxy? (yes/no): ');
+        let proxy = null;
+
+        if (useProxy.toLowerCase() === 'yes') {
+            proxy = readProxyFromFile();
+            if (proxy) {
+                const ipAddress = await getIPWithProxy(proxy);
+                if (ipAddress) {
+                    console.log(`Menggunakan Proxy: ${ipAddress}`);
+                }
+            } else {
+                throw new Error('Gagal membaca proxy dari file.');
+            }
+        } else {
+            // Dapatkan IP dan cetak sebelum menanyakan jumlah akun
+            const ipAddress = await getIPWithoutProxy();
+            if (ipAddress) {
+                console.log(`Menggunakan IP tanpa proxy: ${ipAddress}`);
+            }
+        }
+        
+
         // Dapatkan input dari pengguna
-        const numUsers = parseInt(await getUserInput('Mau berapa akun? : '), 10);
+        const numUsers = parseInt(await getUserInput('\nMau berapa akun? : '), 10);
         const koderef = await getUserInput('Masukkan kode reff : ');
 
         if (isNaN(numUsers) || !koderef) {
