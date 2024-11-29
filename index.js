@@ -5,6 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const chalk = require('chalk');
 const ora = require('ora');
 const figlet = require('figlet');
+const readline = require('readline');
 
 // Banner menggunakan figlet
 console.log(chalk.cyan(figlet.textSync('Reff Ikan Duyung', { horizontalLayout: 'default' })));
@@ -117,13 +118,28 @@ const automateUserCreation = async (numUsers, koderef) => {
     console.log(chalk.greenBright('\n✔ User creation process completed!'));
 };
 
+// Fungsi untuk mendapatkan input dari pengguna
+const getUserInput = (query) => {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+    });
+
+    return new Promise((resolve) => rl.question(query, (ans) => {
+        rl.close();
+        resolve(ans);
+    }));
+};
+
 // Jalankan skrip
 (async () => {
     try {
-        const numUsers = parseInt(process.argv[2], 10);
-        const koderef = process.argv[3];
+        // Dapatkan input dari pengguna
+        const numUsers = parseInt(await getUserInput('Mau berapa akun? : '), 10);
+        const koderef = await getUserInput('Masukkan kode reff : ');
+
         if (isNaN(numUsers) || !koderef) {
-            throw new Error('Invalid arguments. Usage: node script.js <numUsers> <koderef>');
+            throw new Error('Input tidak valid. Pastikan untuk memasukkan jumlah akun dan kode ref.');
         }
         await automateUserCreation(numUsers, koderef);
     } catch (error) {
