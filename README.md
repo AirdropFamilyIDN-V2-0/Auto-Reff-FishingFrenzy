@@ -38,8 +38,8 @@ Fitur utama:
 Clone repositori ini ke komputer lokal Anda:
 
 ```bash
-git clone https://github.com/username/reff-ikan-duyung.git
-cd reff-ikan-duyung
+git clone https://github.com/HarunTampan/Auto-Reff-FishingFrenzy.git
+cd Auto-Reff-FishingFrenzy
 ```
 
 ### 2. install modul
