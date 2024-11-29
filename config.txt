@@ -1,0 +1,5 @@
+API_URL=https://fishing-frenzy-api-0c12a800fbfe.herokuapp.com
+PRIVY_APP_ID=
+PRIVY_CA_ID=
+USE_PROXY=false
+PROXY_URL=http://Your Proxy
